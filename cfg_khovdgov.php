@@ -37,12 +37,12 @@ $large_X = 1050;
 $app_config['default_resizes_image'] = array($smallest_X, $smaller_X, $small_X, $large_X);
 
 include(INC_ROOT . "class.MySQLDB.php");
-//include(INC_ROOT . "class.clnt.html.php");
+include(INC_ROOT . "PrintFaceController.php");
 //include(INC_ROOT . "class.clnt.tools.php");
 //include(INC_ROOT . "simple-php-captcha.php");
 //include(INC_ROOT . "htmlpurifier/HTMLPurifier.standalone.php");
 
-//$clientHTML = new \mongoliax\includes\client_HTML\client_HTML();
+$printFace = new khovdgov\includes\PrintFaceController();
 //$clientHTML->App_Config = $app_config;
 //$purifier = new HTMLPurifier();
 //$_SESSION['captcha'] = simple_php_captcha();

@@ -14,7 +14,7 @@
  * https://github.com/joshcam/PHP-MySQLi-Database-Class/blob/master/MysqliDb.php
  * */
 
-namespace mongoliax\includes\MysqliDb;
+namespace khovdgov\includes;
 
 class MysqliDb {
 
@@ -130,7 +130,7 @@ class MysqliDb {
      * @param string $db
      * @param int $port
      */
-    public function __construct($host = "localhost", $username = "root", $password = "", $db = "mongoliax", $port = 3306, $charset = 'utf8') {
+    public function __construct($host = "localhost", $username = "root", $password = "", $db = "khovdgov_new", $port = 3306, $charset = 'utf8') {
         $isSubQuery = false;
         // if params were passed as array
         if (is_array($host)) {
