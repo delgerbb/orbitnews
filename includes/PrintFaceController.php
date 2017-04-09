@@ -24,18 +24,95 @@ class PrintFaceController {
         return "<b>hi, it works</b>";
     }
 
+    public function printPopularPosts() {
+        $backData = "";
+
+        $this->dbMan->where("lang_iso_code", $this->App_Config['current_web_app_lang']);
+        $this->dbMan->orderBy("post_read_count", "DESC");
+        $cols = array("code_post", "post_title", "post_slug", "post_updated");
+        $kho_posts = $this->dbMan->get('kho_posts', 4, $cols);
+        $countRecords = $this->dbMan->count;
+
+        $i = 0;
+        while ($i < $countRecords) {
+            $postTitle = $kho_posts[$i]['post_title'];
+            $postUpdated = $kho_posts[$i]['post_updated'];
+            $backData .= "<li>
+                <a href='#'><img alt='' src='http://placehold.it/60x60'></a>
+                <h3><a href='#'>$postTitle</a></h3>
+                <div class='post-date'>$postUpdated</div>
+            </li>";
+            $i++;
+        }
+
+        return $backData;
+    }
+
+    public function printRecentPosts() {
+        $backData = "";
+
+        $this->dbMan->where("lang_iso_code", $this->App_Config['current_web_app_lang']);
+        $this->dbMan->where("post_type", "featured");
+        $this->dbMan->orderBy("post_updated", "DESC");
+        $cols = array("code_post", "post_title", "post_slug", "post_updated");
+        $kho_posts = $this->dbMan->get('kho_posts', 4, $cols);
+        $countRecords = $this->dbMan->count;
+
+        $i = 0;
+        while ($i < $countRecords) {
+            $postTitle = $kho_posts[$i]['post_title'];
+            $postUpdated = $kho_posts[$i]['post_updated'];
+            $backData .= "<li>
+                <a href='#'><img alt='' src='http://placehold.it/60x60'></a>
+                <h3><a href='#'>$postTitle</a></h3>
+                <div class='post-date'>$postUpdated</div>
+            </li>";
+            $i++;
+        }
+
+        return $backData;
+    }
+
+    public function printFrontSlidePosts() {
+        $backData = "";
+
+        $this->dbMan->where("lang_iso_code", $this->App_Config['current_web_app_lang']);
+        $this->dbMan->where("post_type", "featured");
+        $this->dbMan->orderBy("post_updated", "DESC");
+        $cols = array("code_post", "post_title", "post_preview", "post_slug");
+        $kho_posts = $this->dbMan->get('kho_posts', 5, $cols);
+        $countRecords = $this->dbMan->count;
+
+        $i = 0;
+        while ($i < $countRecords) {
+            $postTitle = $kho_posts[$i]['post_title'];
+            $postPreview = $kho_posts[$i]['post_preview'];
+            $backData .= "<li>
+                <a href='#'><img alt='$postTitle' src='http://placehold.it/620x350'></a>
+                <div class='flex-caption'>
+                    <div class='desc'>
+                        <h1><a href='#'>$postTitle</a></h1>
+                        <p>$postPreview</p>
+                    </div>
+                </div>
+            </li>";
+            $i++;
+        }
+
+        return $backData;
+    }
+
     public function printPostNames() {
         $backData = "";
         //$this->dbMan->where("lang_iso_code", $this->App_Config['current_web_app_lang']);
         $this->dbMan->orderBy("post_updated", "DESC");
         //$this->dbMan->where("code_post", $postID);
-        $kho_post = $this->dbMan->get('kho_post');
+        $kho_posts = $this->dbMan->get('kho_posts');
         $countRecords = $this->dbMan->count;
-
 
         $i = 0;
         while ($i < $countRecords) {
-            $backData .= $kho_post[$i]['post_title'] . "<br/>";
+            $backData .= $kho_posts[$i]['post_title'] . "<br/>";
             $i++;
         }
         return $backData;

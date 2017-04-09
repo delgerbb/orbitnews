@@ -18,7 +18,6 @@ include($_SERVER['DOCUMENT_ROOT'] . "/orbitnews/cfg_khovdgov.php");
     </head>
     <body>
         <?php
-        echo($printFace->printPostNames());
         include(SEC_ROOT . "sec_header.php");
         ?>
 

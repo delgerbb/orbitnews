@@ -1,6 +1,10 @@
 <!-- Slider -->
 <div class="flexslider mb25">
     <ul class="slides no-bullet inline-list m0">
+        <?php
+            echo($printFace->printFrontSlidePosts());
+        ?>
+        <!--
         <li>
             <a href="#"><img alt="" src="http://placehold.it/620x350"></a>
             <div class="flex-caption">
@@ -37,6 +41,7 @@
                 </div>
             </div>
         </li>
+        -->
     </ul>
 </div>
 <!-- End Slider -->

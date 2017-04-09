@@ -47,7 +47,7 @@
     <!-- End Footer widgets -->
 
     <div class="copyright clearfix">
-        © Copyright 2012 Pixelogic
+        © Copyright 2017 Ховд аймаг
     </div>
 
     <div id="back-to-top" class="right">

@@ -16,7 +16,7 @@
 
     <div class="inner-header clearfix">
         <div id="logo" class="left">
-            <h1><a href="index.html"><img alt="" src="images/logo.png"></a></h1>
+            <h1><a href="index.html"><img alt="" src="<?= IMG_PATH; ?>logo.png"></a></h1>
         </div>
 
         <div class="ads-728x90 right">

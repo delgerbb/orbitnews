@@ -43,6 +43,6 @@ include(INC_ROOT . "PrintFaceController.php");
 //include(INC_ROOT . "htmlpurifier/HTMLPurifier.standalone.php");
 
 $printFace = new khovdgov\includes\PrintFaceController();
-//$clientHTML->App_Config = $app_config;
+$printFace->App_Config = $app_config;
 //$purifier = new HTMLPurifier();
 //$_SESSION['captcha'] = simple_php_captcha();

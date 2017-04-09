@@ -10,6 +10,10 @@
 
             <div id="popular-tab">
                 <ul>
+                    <?php
+                    echo($printFace->printPopularPosts());
+                    ?>
+                    <!--
                     <li>
                         <a href="#"><img alt="" src="http://placehold.it/60x60"></a>
                         <h3><a href="#">Dictum ipsum vel laoreet. Sed convallis quam ut elit</a></h3>
@@ -30,11 +34,16 @@
                         <h3><a href="#">Dictum ipsum vel laoreet. Sed convallis quam ut elit</a></h3>
                         <div class="post-date">March 05, 2012</div>
                     </li>
+                    -->
                 </ul>
             </div>
 
             <div id="recent-tab">
                 <ul>
+                    <?php
+                    echo($printFace->printRecentPosts());
+                    ?>
+                    <!--
                     <li>
                         <a href="#"><img alt="" src="http://placehold.it/60x60"></a>
                         <h3><a href="#">Dictum ipsum vel laoreet. Sed convallis quam ut elit</a></h3>
@@ -55,6 +64,7 @@
                         <h3><a href="#">Dictum ipsum vel laoreet. Sed convallis quam ut elit</a></h3>
                         <div class="post-date">March 05, 2012</div>
                     </li>
+                    -->
                 </ul>
             </div>
 
@@ -93,17 +103,17 @@
         <li class="widget widget_ads_big clearfix">
             <h3 class="widget-title">Ads Big</h3>
             <div class="clearfix">
-                <a href="http://themeforest.net/user/nextWPthemes/portfolio?ref=nextWPThemes"><img alt="" src="http://placehold.it/300x250"></a>
+                <a href="http://themeforest.net/user/nextWPthemes/portfolio?ref=nextWPThemes"><img alt="" src="<?= IMG_PATH; ?>/ads/left-side-ads-300x250.png"></a>
             </div>
         </li>
         <li class="widget widget_facebook_box clearfix">
             <h3 class="widget-title">Find Us On Facebook</h3>
-            <iframe src="http://www.facebook.com/plugins/likebox.php?href=http://facebook.com/psdtuts&amp;width=285&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=false&amp;header=false&amp;height=258" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+            <iframe src="http://www.facebook.com/plugins/likebox.php?href=https://www.facebook.com/khovdzdtg&amp;width=285&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=false&amp;header=false&amp;height=258" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
         </li>
         <li class="widget widget_video clearfix">
             <h3 class="widget-title">Featured Video</h3>
             <div class="flex-video widescreen">
-                <iframe src="http://www.youtube.com/embed/YdaMGcOyfjM" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                <iframe src="http://www.youtube.com/embed/KrGamjSaAWs" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
             </div>
         </li>
         <li class="widget widget_ads_small clearfix">
