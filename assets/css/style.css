@@ -321,7 +321,7 @@ body > header .inner-header {
 .pull-center .flexslider img { min-width: 100%; max-height: 100%; height: 100%; }
 
 /* Caption */
-.flex-caption { position: absolute; left: 0; bottom: 0; font-size: 13px; padding: 18px 20px; color: #fff; height: 100px; width: 100%; overflow: hidden; background: rgba(0,0,0, 0.5); background: url(http://www.htmltocss.com/rgbatopng.php?rgba=0,0,0,0.5)\0/; }
+.flex-caption { position: absolute; left: 0; bottom: 0; font-size: 13px; padding: 18px 20px; color: #fff; height: 100px; width: 100%; overflow: hidden; background: rgba(0,0,0, 0.5); background: url(http://www.htmltocss.com/rgbatopng.php?rgba=0,0,0,0.5); }
 .flex-caption .desc { height: 60px; overflow: hidden; }
 .flex-caption h1 { line-height: normal; margin: 0; }
 .flex-caption a { color: #fc7100; margin-bottom: 7px; font-family: 'PT Sans'; font-size: 18px; line-height: 20px; display: block; }
@@ -810,7 +810,7 @@ li.widget_ads_small li {
     width: 142px;
     height: 142px;
     margin: 0 11px 11px 0;
-    margin: 0 8px 8px 0\0/;
+    margin: 0 8px 8px 0;
     overflow: hidden;
 }
 
@@ -1124,7 +1124,7 @@ li.widget_social_media > ul > li {
     width: 143px;
     height: 84px;
     margin: 0 9px 9px 0;
-    margin: 0 7px 7px 0\0/;
+    margin: 0 7px 7px 0;
 }
 
 li.widget_social_media > ul > li:nth-child(2n) {
@@ -1170,7 +1170,7 @@ li.widget_social_media li.pinterest {
     width: 193px;
     max-height: 202px;
     margin: 0 20px 10px 0;
-    margin: 0 13px 10px 0\0/;
+    margin: 0 13px 10px 0;
     overflow: hidden;
 }
 
@@ -2046,7 +2046,7 @@ input[type="submit"]:hover {
     padding: 2px 20px;
     background: transparent; /* Fallback for web browsers that doesn't support RGBa */
     background: rgba(0, 0, 0, 0.8);
-    background: url(http://www.htmltocss.com/rgbatopng.php?rgba=0,0,0,0.8)\0/;
+    background: url(http://www.htmltocss.com/rgbatopng.php?rgba=0,0,0,0.8);
     -webkit-border-radius: 15px;
        -moz-border-radius: 15px;
             border-radius: 15px;
@@ -2075,5 +2075,5 @@ input[type="submit"]:hover {
     padding: 10px;
     background: #000;
     background: rgba(0, 0, 0, .8);
-    background: url(http://www.htmltocss.com/rgbatopng.php?rgba=0,0,0,0.8)\0/;
+    background: url(http://www.htmltocss.com/rgbatopng.php?rgba=0,0,0,0.8);
 }

@@ -24,6 +24,112 @@ class PrintFaceController {
         return "<b>hi, it works</b>";
     }
 
+    public function printCarouselEightPosts($newsCategoryCode) {
+        $backData = "";
+        
+        $this->dbMan->where("lang_iso_code", $this->App_Config['current_web_app_lang']);
+        $this->dbMan->where("code_cat", 8004);
+        $this->dbMan->orderBy("post_updated", "DESC");
+        $cols = array("code_post", "post_title", "post_slug", "post_preview", "post_updated");
+        $kho_posts = $this->dbMan->get('kho_posts', 8, $cols);
+        $countRecords = $this->dbMan->count;
+        
+        $i = 0;
+        while ($i < $countRecords) {
+            $postTitle = $kho_posts[$i]['post_title'];
+            $postPreview = $kho_posts[$i]['post_preview'];
+            $postUpdated = $kho_posts[$i]['post_updated'];
+            $backData .= "<div class='four column carousel-item'>
+                <a href='#'><img src='http://placehold.it/300x250' alt=''></a>
+
+                <div class='post-container'>
+                    <h2 class='post-title'>$postTitle</h2>
+                    <div class='post-content'>
+                        <p>$postPreview</p>
+                    </div>
+                </div>
+
+                <div class='post-meta'>
+                    <span class='comments'><a href='#'>24</a></span>
+                    <span class='date'><a href='#'>$postUpdated</a></span>
+                </div>
+            </div>";
+            $i++;
+        }
+        
+        return $backData;
+    }
+
+    public function printCategoryFourPosts($newsCategoryCode) {
+        $backData0 = "";
+        $backData1 = "";
+        $backData2 = "";
+        $categoryName = "";
+
+        //$this->dbMan->where("lang_iso_code", $this->App_Config['current_web_app_lang']);
+        //$this->dbMan->where("code_cat", 8005);
+        //$this->dbMan->orderBy("post_updated", "DESC");
+        //$cols = array("code_post", "post_title", "post_slug", "post_preview", "post_updated");
+        //$kho_posts = $this->dbMan->get('kho_posts', 4, $cols);
+        //$countRecords = $this->dbMan->count;
+
+        $params = Array($newsCategoryCode, 'mn', 'mn');
+        $queryString = "SELECT khopos.*, hkocat.cat_name 
+        FROM kho_posts AS khopos 
+        INNER JOIN kho_category AS hkocat
+        ON khopos.code_cat = ? 
+        AND khopos.lang_iso_code = ? 
+        AND khopos.code_cat = hkocat.code_cat 
+        AND hkocat.lang_iso_code = ? 
+        ORDER BY khopos.post_updated DESC LIMIT 4";
+        $kho_posts = $this->dbMan->rawQuery($queryString, $params);
+        $countRecords = $this->dbMan->count;
+
+        $i = 0;
+        while ($i < $countRecords) {
+            $postTitle = $kho_posts[$i]['post_title'];
+            $postPreview = $kho_posts[$i]['post_preview'];
+            $postUpdated = $kho_posts[$i]['post_updated'];
+            $categoryName = $kho_posts[$i]['cat_name'];
+            if ($i == 0) {
+                $backData1 .= "<div class='post-image'>
+                    <a href='#'><img src='http://placehold.it/300x220' alt=''></a>
+                </div>
+
+                <div class='post-container'>
+                    <h2 class='post-title'>$postTitle</h2>
+                    <div class='post-content'>
+                        <p>$postPreview</p>
+                    </div>
+                </div>
+
+                <div class='post-meta'>
+                    <span class='comments'><a href='#'>24</a></span>
+                    <span class='author'><a href='#'>nextwpthemes</a></span>
+                    <span class='date'><a href='#'>13 Jan 2013</a></span>
+                </div>";
+            } else {
+                $backData2 .= "<li>
+                    <a href='#'><img src='http://placehold.it/50x50' alt=''></a>
+                    <h3 class='post-title'><a href='#'>$postTitle</a></h3>
+                    <span class='date'><a href='#'>$postUpdated</a></span>
+                </li>";
+            }
+
+            $i++;
+        }
+
+        $backData0 .= "<h4 class='cat-title'><a href='#'>$categoryName</a></h4>";
+        $backData0 .= $backData1;
+        $backData0 .= "<div class='other-posts'>
+        <ul class='no-bullet'>";
+        $backData0 .= $backData2;
+        $backData0 .= "</ul>
+        </div>";
+
+        return $backData0;
+    }
+
     public function printPopularPosts() {
         $backData = "";
 

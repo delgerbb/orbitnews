@@ -94,7 +94,7 @@ body {
 #content {
 	padding: 25px 20px;
 	background: rgba(252,113,0,0.8);
-	background: transparent url(http://www.htmltocss.com/rgbatopng.php?rgba=252,113,0,0.8)\0/;
+	background: transparent url(http://www.htmltocss.com/rgbatopng.php?rgba=252,113,0,0.8);
 	overflow: hidden;
 }
 

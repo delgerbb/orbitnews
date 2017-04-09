@@ -8,6 +8,10 @@
             <a class="carousel-next"></a>
         </div>
         <div class="carousel-item-holder row" data-index="0">
+            <?php
+            echo($printFace->printCarouselEightPosts(8001));
+            ?>
+            <!--
             <div class="four column carousel-item">
                 <a href="#"><img src="http://placehold.it/300x250" alt=""></a>
 
@@ -83,6 +87,7 @@
                     <span class="date"><a href="#">13 Jan 2013</a></span>
                 </div>
             </div>
+            -->
         </div>
     </div>
     <!-- End jCarousel -->

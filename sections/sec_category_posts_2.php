@@ -1,6 +1,10 @@
 <section class="row">
     <!-- Category posts -->
     <article class="six column">
+        <?php
+        echo($printFace->printCategoryFourPosts(8001));
+        ?>
+        <!--
         <h4 class="cat-title"><a href="#">Business</a></h4>
         <div class="post-image">
             <a href="#"><img src="http://placehold.it/300x220" alt=""></a>
@@ -38,11 +42,16 @@
                 </li>
             </ul>
         </div>
+        -->
     </article>
     <!-- End Category posts -->
 
     <!-- Category posts -->
     <article class="six column">
+        <?php
+        echo($printFace->printCategoryFourPosts(8002));
+        ?>
+        <!--
         <h4 class="cat-title"><a href="#">Techology</a></h4>
         <div class="post-image">
             <a href="#"><img src="http://placehold.it/300x220" alt=""></a>
@@ -80,6 +89,7 @@
                 </li>
             </ul>
         </div>
+        -->
     </article>
     <!-- End Category posts -->
 </section>
