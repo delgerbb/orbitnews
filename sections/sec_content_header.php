@@ -1,7 +1,7 @@
 <header class="clearfix">
     <nav id="main-menu" class="left navigation">
         <ul class="sf-menu no-bullet inline-list m0">
-            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="<?= WEB_ROOT; ?>" class="active">Home</a></li>
             <li><a href="#">Category</a>
                 <ul class="sub-menu">
                     <li><a href="blog-right-sidebar.html">Right Sidebar</a></li>

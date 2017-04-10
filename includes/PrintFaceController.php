@@ -9,7 +9,7 @@ class PrintFaceController {
     public $loggedUserDetails = "";
     private $itemOnPerPage = "10";
     private $dbMan;
-    private $tool;
+    private $toolMan;
     public $site_params;
     public $App_Config;
     public $reg_countries;
@@ -17,30 +17,63 @@ class PrintFaceController {
 
     public function __construct() {
         $this->dbMan = new \khovdgov\includes\MysqliDb();
-        //$this->tool = new \mongoliax\includes\tools\tools();
+        //$this->toolMan = new \khovdgov\includes\ToolsController();
     }
 
     public function hello() {
         return "<b>hi, it works</b>";
     }
 
+    public function printReadPost($readPostSlug) {
+        $backData = "";
+
+        $this->dbMan->where("lang_iso_code", $this->App_Config['current_web_app_lang']);
+        $this->dbMan->where("post_slug", $readPostSlug);
+        $this->dbMan->orderBy("post_updated", "DESC");
+        $cols = array("code_post", "post_title", "post_slug", "post_preview", "post_content", "post_updated");
+        $kho_posts = $this->dbMan->get('kho_posts', 1, $cols);
+        $countRecords = $this->dbMan->count;
+
+        $i = 0;
+        while ($i < $countRecords) {
+            $postTitle = $kho_posts[$i]['post_title'];
+            $postPreview = $kho_posts[$i]['post_preview'];
+            $postUpdated = $kho_posts[$i]['post_updated'];
+            $postContent = $kho_posts[$i]['post_content'];
+
+            $backData .= "<a href='#' class='featured-img'><img src='http://placehold.it/620x375' alt=''></a>
+
+            <h1 class='post-title'>$postTitle</h1>
+                " . $this->cn_htmltrans($postContent, "html") . "
+            <div class='post-meta'>
+                <span class='comments'><a href='#'>24</a></span>
+                <span class='author'><a href='#'>nextwpthemes</a></span>
+                <span class='date'><a href='#'>13 Jan 2013</a></span>
+            </div>";
+            $i++;
+        }
+
+        return $backData;
+    }
+
     public function printCarouselEightPosts($newsCategoryCode) {
         $backData = "";
-        
+
         $this->dbMan->where("lang_iso_code", $this->App_Config['current_web_app_lang']);
         $this->dbMan->where("code_cat", 8004);
         $this->dbMan->orderBy("post_updated", "DESC");
         $cols = array("code_post", "post_title", "post_slug", "post_preview", "post_updated");
         $kho_posts = $this->dbMan->get('kho_posts', 8, $cols);
         $countRecords = $this->dbMan->count;
-        
+
         $i = 0;
         while ($i < $countRecords) {
             $postTitle = $kho_posts[$i]['post_title'];
+            $postSlug = $kho_posts[$i]['post_slug'];
             $postPreview = $kho_posts[$i]['post_preview'];
             $postUpdated = $kho_posts[$i]['post_updated'];
             $backData .= "<div class='four column carousel-item'>
-                <a href='#'><img src='http://placehold.it/300x250' alt=''></a>
+                <a href='" . WEB_ROOT . "post/$postSlug/'><img src='http://placehold.it/300x250' alt=''></a>
 
                 <div class='post-container'>
                     <h2 class='post-title'>$postTitle</h2>
@@ -56,7 +89,7 @@ class PrintFaceController {
             </div>";
             $i++;
         }
-        
+
         return $backData;
     }
 
@@ -88,12 +121,13 @@ class PrintFaceController {
         $i = 0;
         while ($i < $countRecords) {
             $postTitle = $kho_posts[$i]['post_title'];
+            $postSlug = $kho_posts[$i]['post_slug'];
             $postPreview = $kho_posts[$i]['post_preview'];
             $postUpdated = $kho_posts[$i]['post_updated'];
             $categoryName = $kho_posts[$i]['cat_name'];
             if ($i == 0) {
                 $backData1 .= "<div class='post-image'>
-                    <a href='#'><img src='http://placehold.it/300x220' alt=''></a>
+                    <a href='" . WEB_ROOT . "post/$postSlug/'><img src='http://placehold.it/300x220' alt=''></a>
                 </div>
 
                 <div class='post-container'>
@@ -110,8 +144,8 @@ class PrintFaceController {
                 </div>";
             } else {
                 $backData2 .= "<li>
-                    <a href='#'><img src='http://placehold.it/50x50' alt=''></a>
-                    <h3 class='post-title'><a href='#'>$postTitle</a></h3>
+                    <a href='" . WEB_ROOT . "post/$postSlug/'><img src='http://placehold.it/50x50' alt=''></a>
+                    <h3 class='post-title'><a href='" . WEB_ROOT . "post/$postSlug/'>$postTitle</a></h3>
                     <span class='date'><a href='#'>$postUpdated</a></span>
                 </li>";
             }
@@ -142,10 +176,11 @@ class PrintFaceController {
         $i = 0;
         while ($i < $countRecords) {
             $postTitle = $kho_posts[$i]['post_title'];
+            $postSlug = $kho_posts[$i]['post_slug'];
             $postUpdated = $kho_posts[$i]['post_updated'];
             $backData .= "<li>
-                <a href='#'><img alt='' src='http://placehold.it/60x60'></a>
-                <h3><a href='#'>$postTitle</a></h3>
+                <a href='" . WEB_ROOT . "post/$postSlug/'><img alt='' src='http://placehold.it/60x60'></a>
+                <h3><a href='" . WEB_ROOT . "post/$postSlug/'>$postTitle</a></h3>
                 <div class='post-date'>$postUpdated</div>
             </li>";
             $i++;
@@ -167,10 +202,11 @@ class PrintFaceController {
         $i = 0;
         while ($i < $countRecords) {
             $postTitle = $kho_posts[$i]['post_title'];
+            $postSlug = $kho_posts[$i]['post_slug'];
             $postUpdated = $kho_posts[$i]['post_updated'];
             $backData .= "<li>
-                <a href='#'><img alt='' src='http://placehold.it/60x60'></a>
-                <h3><a href='#'>$postTitle</a></h3>
+                <a href='" . WEB_ROOT . "post/$postSlug/'><img alt='' src='http://placehold.it/60x60'></a>
+                <h3><a href='" . WEB_ROOT . "post/$postSlug/'>$postTitle</a></h3>
                 <div class='post-date'>$postUpdated</div>
             </li>";
             $i++;
@@ -192,12 +228,13 @@ class PrintFaceController {
         $i = 0;
         while ($i < $countRecords) {
             $postTitle = $kho_posts[$i]['post_title'];
+            $postSlug = $kho_posts[$i]['post_slug'];
             $postPreview = $kho_posts[$i]['post_preview'];
             $backData .= "<li>
-                <a href='#'><img alt='$postTitle' src='http://placehold.it/620x350'></a>
+                <a href='" . WEB_ROOT . "post/$postSlug/'><img alt='$postTitle' src='http://placehold.it/620x350'></a>
                 <div class='flex-caption'>
                     <div class='desc'>
-                        <h1><a href='#'>$postTitle</a></h1>
+                        <h1><a href='" . WEB_ROOT . "post/$postSlug/'>$postTitle</a></h1>
                         <p>$postPreview</p>
                     </div>
                 </div>
@@ -222,6 +259,19 @@ class PrintFaceController {
             $i++;
         }
         return $backData;
+    }
+
+    public function cn_htmltrans($string, $type = "text") {
+        $trans = get_html_translation_table(HTML_ENTITIES);
+
+        if ($type == "text") {
+            $string = addslashes($string);
+            return strtr($string, $trans);
+        } else {
+            $trans = array_flip($trans);
+            $string = stripslashes($string);
+            return strtr($string, $trans);
+        }
     }
 
     ///---------------------- another application functions ----------------------------------------------------
